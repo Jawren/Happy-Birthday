@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
+
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(180deg, #fce4ec, #fff1f2);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .container {
+      text-align: center;
+      color: #4a4a4a;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5em;
+      letter-spacing: 2px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #6b6b6b;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Balloons */
+    .balloon {
+      position: absolute;
+      bottom: -150px;
+      width: 60px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: #ffb6c1;
+      opacity: 0.8;
+      animation: float 8s linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.9; }
+      100% { transform: translateY(-110vh) rotate(10deg); opacity: 0; }
+    }
+
+    /* Button */
+    button {
+      margin-top: 1.5em;
+      padding: 0.7em 1.5em;
+      border: none;
+      border-radius: 25px;
+      background-color: #ffc1cc;
+      color: #4a4a4a;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff9eb5;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Happy Birthday 🎂</h1>
+    <p>You make the world brighter just by being in it.</p>
+    <button onclick="playMusic()">Click to Play Music 🎵</button>
+  </div>
+
+  <audio id="bg-music" src="Happy - Alexander Nakarada [Free Music  No Copyright].mp3" loop></audio>
+
+  <script>
+    function playMusic() {
+      const music = document.getElementById('bg-music');
+      music.play();
+    }
+
+    // Generate random balloons
+    function createBalloon() {
+      const balloon = document.createElement('div');
+      balloon.classList.add('balloon');
+      document.body.appendChild(balloon);
+
+      const colors = ['#ffb6c1', '#ffd1dc', '#ffe4e1', '#ffc0cb', '#fddde6'];
+      balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      balloon.style.left = Math.random() * 100 + 'vw';
+      balloon.style.animationDuration = 6 + Math.random() * 5 + 's';
+      balloon.style.width = 40 + Math.random() * 40 + 'px';
+      balloon.style.height = 60 + Math.random() * 50 + 'px';
+
+      setTimeout(() => {
+        balloon.remove();
+      }, 10000);
+    }
+
+    setInterval(createBalloon, 800);
+  </script>
+</body>
+</html>
